@@ -42,7 +42,7 @@
 # build dir.
 #
 # This file knows how to handle autoconf, automake, libtool, gtk-doc,
-# gnome-doc-utils, mallard, intltool, gsettings.
+# gnome-doc-utils, yelp.m4, mallard, intltool, gsettings.
 #
 #
 # KNOWN ISSUES:
@@ -108,6 +108,13 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 				$(DOC_H_FILE) \
 				"*/.xml2po.mo" \
 				"*/*.omf.out" \
+			; do echo /$$x; done; \
+		fi; \
+		if test "x$(HELP_ID)" = x -o "x$(HELP_LINGUAS)" = x; then :; else \
+			for x in \
+				$(_HELP_LC_FILES) \
+				$(_HELP_LC_STAMPS) \
+				$(_HELP_MOFILES) \
 			; do echo /$$x; done; \
 		fi; \
 		if test "x$(gsettings_SCHEMAS)" = x; then :; else \
