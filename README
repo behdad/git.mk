@@ -1,0 +1,3 @@
+This is git.mk, a small Makefile to autogenerate .gitignore files
+for autotools-based projects.  Read the header of git.mk for info
+on how to use this in your own project.
