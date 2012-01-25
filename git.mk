@@ -35,7 +35,7 @@
 # the directories involved and I'll diagnose.
 #
 # For a list of toplevel files that should be in MAINTAINERCLEANFILES, see
-# Makefile.am.sample.
+# Makefile.am.sample in the git.mk git repo.
 #
 # Don't EXTRA_DIST this file.  It is supposed to only live in git clones,
 # not tarballs.  It serves no useful purpose in tarballs and clutters the
