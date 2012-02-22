@@ -149,6 +149,12 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 				config.lt \
 			; do echo /$$x; done; \
 		fi; \
+		if test "x$(DEJATOOL)" = x; then :; else \
+			for x in \
+				$(DEJATOOL) \
+			; do echo /$$x.sum; echo /$$x.log; done; \
+			echo /site.exp; \
+		fi; \
 		for x in \
 			.gitignore \
 			$(GITIGNOREFILES) \
