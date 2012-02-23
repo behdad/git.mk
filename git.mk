@@ -5,7 +5,7 @@
 # Written by Behdad Esfahbod
 #
 # Copying and distribution of this file, with or without modification,
-# are permitted in any medium without royalty provided the copyright
+# is permitted in any medium without royalty provided the copyright
 # notice and this notice are preserved.
 #
 # The canonical source for this file is https://github.com/behdad/git.mk.
