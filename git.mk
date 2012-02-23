@@ -42,7 +42,7 @@
 # build dir.
 #
 # This file knows how to handle autoconf, automake, libtool, gtk-doc,
-# gnome-doc-utils, yelp.m4, mallard, intltool, gsettings.
+# gnome-doc-utils, yelp.m4, mallard, intltool, gsettings, dejagnu.
 #
 #
 # KNOWN ISSUES:
