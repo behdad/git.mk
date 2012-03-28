@@ -97,8 +97,14 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 			; do echo /$$x; done; \
 		fi; \
 		if test "x$(DOC_MODULE)$(DOC_ID)" = x -o "x$(DOC_LINGUAS)" = x; then :; else \
+			for lc in $(DOC_LINGUAS); do \
+				for x in \
+					$(if $(DOC_MODULE),$(DOC_MODULE).xml) \
+					$(DOC_PAGES) \
+					$(DOC_INCLUDES) \
+				; do echo /$$lc/$$x; done; \
+			done; \
 			for x in \
-				$(_DOC_LC_DOCS) \
 				$(_DOC_OMF_ALL) \
 				$(_DOC_DSK_ALL) \
 				$(_DOC_HTML_ALL) \
@@ -109,11 +115,13 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 			; do echo /$$x; done; \
 		fi; \
 		if test "x$(HELP_ID)" = x -o "x$(HELP_LINGUAS)" = x; then :; else \
-			for x in \
-				$(_HELP_LC_FILES) \
-				$(_HELP_LC_STAMPS) \
-				$(_HELP_MOFILES) \
-			; do echo /$$x; done; \
+			for lc in $(HELP_LINGUAS); do \
+				for x in \
+					$(HELP_FILES) \
+					"$$lc.stamp" \
+					"$$lc.mo" \
+				; do echo /$$lc/$$x; done; \
+			done; \
 		fi; \
 		if test "x$(gsettings_SCHEMAS)" = x; then :; else \
 			for x in \
