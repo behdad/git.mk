@@ -44,6 +44,12 @@
 # This file knows how to handle autoconf, automake, libtool, gtk-doc,
 # gnome-doc-utils, yelp.m4, mallard, intltool, gsettings, dejagnu.
 #
+# This makefile provides the following targets:
+#
+# - all: "make all" will build all gitignore files.
+# - gitignore: makes all gitignore files in the current dir and subdirs.
+# - .gitignore: make gitignore file for the current dir.
+# - gitignore-recurse: makes all gitignore files in the subdirs.
 #
 # KNOWN ISSUES:
 #
@@ -198,18 +204,19 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 	mv $@.tmp $@;
 
 all: $(srcdir)/.gitignore gitignore-recurse-maybe
+gitignore: $(srcdir)/.gitignore gitignore-recurse
+
 gitignore-recurse-maybe:
-	@if test "x$(SUBDIRS)" = "x$(DIST_SUBDIRS)"; then :; else \
-		$(MAKE) $(AM_MAKEFLAGS) gitignore-recurse; \
-	fi;
-gitignore-recurse:
 	@for subdir in $(DIST_SUBDIRS); do \
 	  case " $(SUBDIRS) " in \
 	    *" $$subdir "*) :;; \
-	    *) test "$$subdir" = . || (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) .gitignore gitignore-recurse || echo "Skipping $$subdir");; \
+	    *) test "$$subdir" = . || (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) .gitignore gitignore-recurse-maybe || echo "Skipping $$subdir");; \
 	  esac; \
 	done
-gitignore: $(srcdir)/.gitignore gitignore-recurse
+gitignore-recurse:
+	@for subdir in $(DIST_SUBDIRS); do \
+	    test "$$subdir" = . || (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) .gitignore gitignore-recurse || echo "Skipping $$subdir"); \
+	done
 
 maintainer-clean: gitignore-clean
 gitignore-clean:
