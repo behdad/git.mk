@@ -171,10 +171,9 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 			.gitignore \
 			$(GITIGNOREFILES) \
 			$(CLEANFILES) \
-			$(PROGRAMS) \
-			$(check_PROGRAMS) \
-			$(EXTRA_PROGRAMS) \
-			$(LTLIBRARIES) \
+			$(PROGRAMS) $(check_PROGRAMS) $(EXTRA_PROGRAMS) \
+			$(LIBRARIES) $(check_LIBRARIES) $(EXTRA_LIBRARIES) \
+			$(LTLIBRARIES) $(check_LTLIBRARIES) $(EXTRA_LTLIBRARIES) \
 			so_locations \
 			.libs _libs \
 			$(MOSTLYCLEANFILES) \
