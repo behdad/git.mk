@@ -8,7 +8,10 @@
 # is permitted in any medium without royalty provided the copyright
 # notice and this notice are preserved.
 #
-# The canonical source for this file is https://github.com/behdad/git.mk.
+# The latest version of this file can be downloaded from:
+#   https://raw.github.com/behdad/git.mk/master/git.mk
+# Bugs, etc, should be reported upstream at:
+#   https://github.com/behdad/git.mk
 #
 # To use in your project, import this file in your git repo's toplevel,
 # then do "make -f git.mk".  This modifies all Makefile.am files in
