@@ -164,6 +164,18 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 				config.lt \
 			; do echo /$$x; done; \
 		fi; \
+		for f in configure.ac configure.in; do \
+			m4dir=`grep AC_CONFIG_MACRO_DIR $(srcdir)/$$f 2> /dev/null | sed -e 's/AC_CONFIG_MACRO_DIR(\[*\([^]]*\)\]*)/\1/'`; \
+			if test "x$$m4dir" != "x" && test -d $(srcdir)/$$m4dir; then \
+				for x in \
+					libtool.m4 \
+					ltoptions.m4 \
+					ltsugar.m4 \
+					ltversion.m4 \
+					lt~obsolete.m4 \
+				; do echo /$$m4dir/$$x; done; \
+			fi; \
+		done; \
 		if test "x$(DEJATOOL)" = x; then :; else \
 			for x in \
 				$(DEJATOOL) \
