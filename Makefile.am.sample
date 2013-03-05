@@ -35,7 +35,8 @@ MAINTAINERCLEANFILES = \
 	$(srcdir)/m4/lt~obsolete.m4 \
 	`$(AUTOCONF) --trace 'AC_CONFIG_FILES:$$1' $(srcdir)/configure.ac | \
 	while read f; do \
-	  case $$f in Makefile|*/Makefile) echo "$$f.in";; esac; \
+	  case $$f in Makefile|*/Makefile) \
+	    test -f "$(srcdir)/$$f.am" && echo "$(srcdir)/$$f.in";; esac; \
 	done`
 
 -include $(top_srcdir)/git.mk
