@@ -33,6 +33,9 @@ MAINTAINERCLEANFILES = \
 	$(srcdir)/m4/ltsugar.m4 \
 	$(srcdir)/m4/ltversion.m4 \
 	$(srcdir)/m4/lt~obsolete.m4 \
-	`find "$(srcdir)" -type f -name Makefile.in -print`
+	`$(AUTOCONF) --trace 'AC_CONFIG_FILES:$$1' $(srcdir)/configure.ac | \
+	while read f; do \
+	  case $$f in Makefile|*/Makefile) echo "$$f.in";; esac; \
+	done`
 
 -include $(top_srcdir)/git.mk
