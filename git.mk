@@ -221,6 +221,15 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 			; do echo /$$x.sum; echo /$$x.log; done; \
 			echo /site.exp; \
 		fi; \
+		if test "x$(am__dirstamp)" = x; then :; else \
+			echo $(am__dirstamp); \
+		fi; \
+		if test "x$(LTCOMPILE)" = x; then :; else \
+			for x in \
+				"*.lo" \
+				".libs" "_libs" \
+			; do echo "$$x"; done; \
+		fi; \
 		for x in \
 			.gitignore \
 			$(GITIGNOREFILES) \
@@ -229,10 +238,8 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 			$(LIBRARIES) $(check_LIBRARIES) $(EXTRA_LIBRARIES) \
 			$(LTLIBRARIES) $(check_LTLIBRARIES) $(EXTRA_LTLIBRARIES) \
 			so_locations \
-			.libs _libs \
 			$(MOSTLYCLEANFILES) \
 			"*.$(OBJEXT)" \
-			"*.lo" \
 			$(DISTCLEANFILES) \
 			$(am__CONFIG_DISTCLEAN_FILES) \
 			$(CONFIG_CLEAN_FILES) \
