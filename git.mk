@@ -145,8 +145,8 @@ git-mk-install:
 ###############################################################################
 
 $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
-	$(AM_V_GEN) \
-	{ \
+	@echo "git.mk: Generating $@"
+	@{ \
 		if test "x$(DOC_MODULE)" = x -o "x$(DOC_MAIN_SGML_FILE)" = x; then :; else \
 			for x in \
 				$(DOC_MODULE)-decl-list.txt \
