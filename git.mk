@@ -145,8 +145,9 @@ git-mk-install:
 ###############################################################################
 
 $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
-	@echo "git.mk: Generating $@"
-	@{ \
+	@git ls-files --error-unmatch $@ &>/dev/null ||  { \
+	echo "git.mk: Generating $@"; \
+	{ \
 		if test "x$(DOC_MODULE)" = x -o "x$(DOC_MAIN_SGML_FILE)" = x; then :; else \
 			for x in \
 				$(DOC_MODULE)-decl-list.txt \
@@ -267,7 +268,7 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 	sed "s@^/`echo "$(srcdir)" | sed 's/\(.\)/[\1]/g'`/@/@" | \
 	sed 's@/[.]/@/@g' | \
 	LC_ALL=C sort | uniq > $@.tmp && \
-	mv $@.tmp $@;
+	mv $@.tmp $@; }
 
 all: $(srcdir)/.gitignore gitignore-recurse-maybe
 gitignore: $(srcdir)/.gitignore gitignore-recurse
@@ -286,6 +287,6 @@ gitignore-recurse:
 
 maintainer-clean: gitignore-clean
 gitignore-clean:
-	-rm -f $(srcdir)/.gitignore
+	-git ls-files --error-unmatch .gitignore &>/dev/null || rm -f $(srcdir)/.gitignore
 
 .PHONY: gitignore-clean gitignore gitignore-recurse gitignore-recurse-maybe
