@@ -192,13 +192,19 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 		if test -f $(srcdir)/po/Makefile.in.in; then \
 			for x in \
 				po/Makefile.in.in \
+				po/Makefile.in.in~ \
 				po/Makefile.in \
 				po/Makefile \
+				po/Makevars.template \
 				po/POTFILES \
+				po/Rules-quot \
 				po/stamp-it \
 				po/.intltool-merge-cache \
 				"po/*.gmo" \
+				"po/*.header" \
 				"po/*.mo" \
+				"po/*.sed" \
+				"po/*.sin" \
 				po/$(GETTEXT_PACKAGE).pot \
 				intltool-extract.in \
 				intltool-merge.in \
