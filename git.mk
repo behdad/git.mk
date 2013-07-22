@@ -77,7 +77,12 @@ GITIGNORE_MAINTAINERCLEANFILES_TOPLEVEL = \
 	$(srcdir)/aclocal.m4 \
 	$(srcdir)/autoscan.log \
 	$(srcdir)/configure.scan \
-	`AUX_DIR=$(srcdir)/$$($(AUTOCONF) --trace 'AC_CONFIG_AUX_DIR:$$1'); for x in \
+	`AUX_DIR=$$($(AUTOCONF) --trace 'AC_CONFIG_AUX_DIR:$$1'); \
+	if test x$$AUX_DIR = x; then \
+		AUX_DIR=$(srcdir); \
+	else \
+		AUX_DIR=$(srcdir)/$$AUX_DIR; \
+	fi; for x in \
 		ar-lib \
 		compile \
 		config.guess \
