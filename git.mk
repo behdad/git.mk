@@ -259,6 +259,10 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 			$(MAINTAINERCLEANFILES) \
 			$(BUILT_SOURCES) \
 			$(DEPDIR) \
+			$(patsubst %.vala,%.c,$(filter %.vala,$(SOURCES))) \
+			$(filter %_vala.stamp,$(DIST_COMMON)) \
+			$(filter %.vapi,$(DIST_COMMON)) \
+			$(patsubst %.vapi,%.h,$(filter %.vapi,$(DIST_COMMON))) \
 			Makefile \
 			Makefile.in \
 			"*.orig" \
