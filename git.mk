@@ -254,6 +254,7 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 			$(DISTCLEANFILES) \
 			$(am__CONFIG_DISTCLEAN_FILES) \
 			$(CONFIG_CLEAN_FILES) \
+			$(RECHECK_LOGS) \
 			TAGS ID GTAGS GRTAGS GSYMS GPATH tags \
 			"*.tab.c" \
 			$(MAINTAINERCLEANFILES) \
