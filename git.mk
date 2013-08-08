@@ -250,11 +250,13 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 			$(LTLIBRARIES) $(check_LTLIBRARIES) $(EXTRA_LTLIBRARIES) \
 			so_locations \
 			$(MOSTLYCLEANFILES) \
+			$(TEST_LOGS) \
+			$(TEST_LOGS:.log=.trs) \
+			$(TEST_SUITE_LOG) \
 			"*.$(OBJEXT)" \
 			$(DISTCLEANFILES) \
 			$(am__CONFIG_DISTCLEAN_FILES) \
 			$(CONFIG_CLEAN_FILES) \
-			$(RECHECK_LOGS) \
 			TAGS ID GTAGS GRTAGS GSYMS GPATH tags \
 			"*.tab.c" \
 			$(MAINTAINERCLEANFILES) \
