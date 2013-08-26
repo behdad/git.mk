@@ -77,7 +77,7 @@ GITIGNORE_MAINTAINERCLEANFILES_TOPLEVEL = \
 	$(srcdir)/aclocal.m4 \
 	$(srcdir)/autoscan.log \
 	$(srcdir)/configure.scan \
-	`AUX_DIR=$(srcdir)/$$($(AUTOCONF) --trace 'AC_CONFIG_AUX_DIR:$$1' $(srcdir)/configure.ac); \
+	`AUX_DIR=$(srcdir)/$$(cd $(top_srcdir); $(AUTOCONF) --trace 'AC_CONFIG_AUX_DIR:$$1' ./configure.ac); \
 	 test "x$$AUX_DIR" = "x$(srcdir)/" && AUX_DIR=$(srcdir); \
 	 for x in \
 		ar-lib \
@@ -90,13 +90,13 @@ GITIGNORE_MAINTAINERCLEANFILES_TOPLEVEL = \
 		missing \
 		mkinstalldirs \
 	 ; do echo "$$AUX_DIR/$$x"; done` \
-	`$(AUTOCONF) --trace 'AC_CONFIG_HEADERS:$$1' $(srcdir)/configure.ac | \
+	`cd $(top_srcdir); $(AUTOCONF) --trace 'AC_CONFIG_HEADERS:$$1' ./configure.ac | \
 	head -n 1 | while read f; do echo "$(srcdir)/$$f.in"; done`
 #
 # All modules should also be fine including the following variable, which
 # removes automake-generated Makefile.in files:
 GITIGNORE_MAINTAINERCLEANFILES_MAKEFILE_IN = \
-	`$(AUTOCONF) --trace 'AC_CONFIG_FILES:$$1' $(srcdir)/configure.ac | \
+	`cd $(top_srcdir); $(AUTOCONF) --trace 'AC_CONFIG_FILES:$$1' ./configure.ac | \
 	while read f; do \
 	  case $$f in Makefile|*/Makefile) \
 	    test -f "$(srcdir)/$$f.am" && echo "$(srcdir)/$$f.in";; esac; \
@@ -160,6 +160,8 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 				"tmpl/*.bak" \
 				xml html \
 			; do echo "/$$x"; done; \
+			FLAVOR=$$(cd $(top_srcdir); $(AUTOCONF) --trace 'GTK_DOC_CHECK:$$2' ./configure.ac); \
+			case $$FLAVOR in *no-tmpl*) echo /tmpl;; esac; \
 		fi; \
 		if test "x$(DOC_MODULE)$(DOC_ID)" = x -o "x$(DOC_LINGUAS)" = x; then :; else \
 			for lc in $(DOC_LINGUAS); do \
