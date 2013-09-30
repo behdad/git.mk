@@ -103,14 +103,19 @@ GITIGNORE_MAINTAINERCLEANFILES_MAKEFILE_IN = \
 	    test -f "$(srcdir)/$$f.am" && echo "$(srcdir)/$$f.in";; esac; \
 	done`
 #
-# Modules that use libtool /and/ use  AC_CONFIG_MACRO_DIR([m4]) may also
-# include this:
+# Modules that use libtool and use  AC_CONFIG_MACRO_DIR() may also include this,
+# though it's harmless to include regardless.
 GITIGNORE_MAINTAINERCLEANFILES_M4_LIBTOOL = \
-	$(srcdir)/m4/libtool.m4 \
-	$(srcdir)/m4/ltoptions.m4 \
-	$(srcdir)/m4/ltsugar.m4 \
-	$(srcdir)/m4/ltversion.m4 \
-	$(srcdir)/m4/lt~obsolete.m4
+	`MACRO_DIR=$(srcdir)/$$(cd $(top_srcdir); $(AUTOCONF) --trace 'AC_CONFIG_MACRO_DIR:$$1' ./configure.ac); \
+	 if test "x$$MACRO_DIR" != "x$(srcdir)/"; then \
+		for x in \
+			libtool.m4 \
+			ltoptions.m4 \
+			ltsugar.m4 \
+			ltversion.m4 \
+			lt~obsolete.m4 \
+		; do echo "$$MACRO_DIR/$$x"; done; \
+	 fi`
 
 
 
