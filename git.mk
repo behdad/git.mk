@@ -45,7 +45,7 @@
 # build dir.
 #
 # This file knows how to handle autoconf, automake, libtool, gtk-doc,
-# gnome-doc-utils, yelp.m4, mallard, intltool, gsettings, dejagnu.
+# gnome-doc-utils, yelp.m4, mallard, intltool, gsettings, dejagnu, appdata.
 #
 # This makefile provides the following targets:
 #
@@ -200,6 +200,11 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 			for x in \
 				$(gsettings_SCHEMAS:.xml=.valid) \
 				$(gsettings__enum_file) \
+			; do echo "/$$x"; done; \
+		fi; \
+		if test "x$(appdata_XML)" = x; then :; else \
+			for x in \
+				$(appdata_XML:.xml=.valid) \
 			; do echo "/$$x"; done; \
 		fi; \
 		if test -f $(srcdir)/po/Makefile.in.in; then \
