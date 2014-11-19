@@ -91,6 +91,7 @@ GITIGNORE_MAINTAINERCLEANFILES_TOPLEVEL = \
 		missing \
 		mkinstalldirs \
 		test-driver \
+		ylwrap \
 	 ; do echo "$$AUX_DIR/$$x"; done` \
 	`cd $(top_srcdir); $(AUTOCONF) --trace 'AC_CONFIG_HEADERS:$$1' ./configure.ac | \
 	head -n 1 | while read f; do echo "$(srcdir)/$$f.in"; done`
