@@ -9,7 +9,8 @@
 # notice and this notice are preserved.
 #
 # The latest version of this file can be downloaded from:
-#   https://raw.github.com/behdad/git.mk/master/git.mk
+GIT_MK_URL = https://raw.github.com/behdad/git.mk/master/git.mk
+#
 # Bugs, etc, should be reported upstream at:
 #   https://github.com/behdad/git.mk
 #
@@ -149,7 +150,10 @@ git-mk-install:
 			fi; \
 	fi; done; test -z "$$any_failed"
 
-.PHONY: git-all git-mk-install
+git-mk-update:
+	wget $(GIT_MK_URL) -O $(top_srcdir)/git.mk
+
+.PHONY: git-all git-mk-install git-mk-update
 
 
 
