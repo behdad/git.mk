@@ -9,7 +9,7 @@
 # notice and this notice are preserved.
 #
 # The latest version of this file can be downloaded from:
-GIT_MK_URL = https://raw.github.com/behdad/git.mk/master/git.mk
+GIT_MK_URL = https://raw.githubusercontent.com/behdad/git.mk/master/git.mk
 #
 # Bugs, etc, should be reported upstream at:
 #   https://github.com/behdad/git.mk
