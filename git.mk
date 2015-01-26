@@ -277,6 +277,7 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 			$(TEST_LOGS) \
 			$(TEST_LOGS:.log=.trs) \
 			$(TEST_SUITE_LOG) \
+			$(TESTS:=.test) \
 			"*.gcda" \
 			"*.gcno" \
 			$(DISTCLEANFILES) \
