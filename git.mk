@@ -1,4 +1,5 @@
-# git.mk
+# git.mk, a small Makefile to autogenerate .gitignore files
+# for autotools-based projects.
 #
 # Copyright 2009, Red Hat, Inc.
 # Copyright 2010,2011,2012,2013 Behdad Esfahbod
