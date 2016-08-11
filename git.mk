@@ -48,7 +48,7 @@ GIT_MK_URL = https://raw.githubusercontent.com/behdad/git.mk/master/git.mk
 #
 # This file knows how to handle autoconf, automake, libtool, gtk-doc,
 # gnome-doc-utils, yelp.m4, mallard, intltool, gsettings, dejagnu, appdata,
-# appstream.
+# appstream, hotdoc.
 #
 # This makefile provides the following targets:
 #
@@ -208,6 +208,15 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 				"*/.xml2po.mo" \
 				"*/*.omf.out" \
 			; do echo /$$x; done; \
+		fi; \
+		if test "x$(HOTDOC)" = x; then :; else \
+			$(foreach project, $(HOTDOC_PROJECTS),echo "/$(call HOTDOC_TARGET, $(project))"; \
+				echo "/$(shell $(HOTDOC) $($(project)_HOTDOC_FLAGS) --get-conf-path output)"; \
+				echo "/$(shell $(HOTDOC) $($(project)_HOTDOC_FLAGS) --get-private-folder)"; \
+			) \
+			for x in \
+				.hotdoc.d \
+			; do echo "/$$x"; done; \
 		fi; \
 		if test "x$(HELP_ID)" = x -o "x$(HELP_LINGUAS)" = x; then :; else \
 			for lc in $(HELP_LINGUAS); do \
