@@ -210,9 +210,9 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 			; do echo /$$x; done; \
 		fi; \
 		if test "x$(HOTDOC)" = x; then :; else \
-			$(foreach project, $(HOTDOC_PROJECTS),echo "/$(call HOTDOC_TARGET, $(project))"; \
-				echo "/$(shell $(HOTDOC) $($(project)_HOTDOC_FLAGS) --get-conf-path output)"; \
-				echo "/$(shell $(HOTDOC) $($(project)_HOTDOC_FLAGS) --get-private-folder)"; \
+			$(foreach project, $(HOTDOC_PROJECTS),echo "/$(call HOTDOC_TARGET,$(project))"; \
+				echo "/$(shell $(call HOTDOC_PROJECT_COMMAND,$(project)) --get-conf-path output)" ; \
+				echo "/$(shell $(call HOTDOC_PROJECT_COMMAND,$(project)) --get-private-folder)" ; \
 			) \
 			for x in \
 				.hotdoc.d \
